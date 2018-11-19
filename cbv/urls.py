@@ -21,7 +21,5 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/',include('posts.urls')),
-    # path('create/', views.SchoolCreateView.as_view()),
-    # path('update/<int:pk>/', views.SchoolUpdateView.as_view()),
-    # path('delete/<int:pk>/', views.SchoolDeleteView.as_view()),
+
 ]

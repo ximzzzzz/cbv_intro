@@ -1,0 +1,8 @@
+{%extends 'posts/base.html'%}
+
+{%block body%}
+    {%for school in school_list%}
+        <h1>{{school.name}}</h1>
+        <a href="{% url 'posts:delete' pk=school.pk %}">삭제</a>
+    {%endfor%}
+{%endblock%}

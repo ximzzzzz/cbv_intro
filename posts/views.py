@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import View,TemplateView, DetailView ##새로추가
+from django.views.generic import (View,TemplateView, DetailView,CreateView,ListView, UpdateView, DeleteView)
+##새로추가
 from django.http import HttpResponse ## 새로추가
 
 from .models import School
-
+from django.urls import reverse_lazy
 # Create your views here.
 
 def index(request):
@@ -21,7 +22,24 @@ class IndexView(TemplateView):
         context['greeting'] = "안녕하세요!!"
         return context
         
+class SchoolListView(ListView):
+    model = School
+    # schools = School.objects.all()
+    template_name = 'posts/school_list.html'
+    # return render(request,'posts/school_list.html',{'schools':schools})
         
 class SchoolDetailView(DetailView):
     model = School
     template_name = 'posts/school_detail.html'
+
+class SchoolCreateView(CreateView):
+    model = School #School_form.html 을 자동으로 찾음
+    fields = ('name','location')
+    
+class SchoolUpdateView(UpdateView):
+    model = School
+    fields = ('location',) #반드시 쉼표로 마무리
+    
+class SchoolDeleteView(DeleteView):
+    model = School
+    success_url = reverse_lazy('posts:list')
